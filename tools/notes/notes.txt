@@ -20,3 +20,5 @@ exit() / exit;
 
 JS variable (object of class)
 
+JSON
+

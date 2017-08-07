@@ -48,10 +48,12 @@
             exit;
         }
 
-        # XML HTTP REQUEST, XHR
-        public function xhrInsert()
-        {
-            
+        public function xhrInsert() {
+            $this->model->xhrInsert();
+        }
+
+        function xhrGetListings() {
+            $this->model->xhrGetListings();
         }
 
 
