@@ -1,0 +1,22 @@
+ternary operator usage in PHP
+
+'return false', PHP ('so we don't call two methods'?)
+
+                // throw new Exception("<br/>The file does not exist!");
+
+
+
+
+CONVENTIONS:
+
+    IF, ELSE, ELSE IF in CAPITAL
+
+
+look up:
+
+Session::init();
+
+exit() / exit;
+
+JS variable (object of class)
+

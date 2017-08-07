@@ -1,0 +1,12 @@
+# setting custom modifications to RWengine
+
+RewriteEngine On # turn RWengine on
+
+# set conditions of rule
+# DO NOT MODIFY vars containing directories, files or (sym) links (respecively)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# modify dynamic URL and set $_GET with it
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L] # modify URL
