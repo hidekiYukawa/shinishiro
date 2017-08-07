@@ -18,6 +18,7 @@
     {
         public function __construct()
         {
+            # todo: 'beautify' this code and make it more efficient. MORE LESS!
             // check if $_GET['url'] is set, else, set $url to NULL
             $url = (isset($_GET[ 'url' ])) ? $_GET[ 'url' ] : null;
 

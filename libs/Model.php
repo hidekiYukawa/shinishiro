@@ -14,7 +14,7 @@
 
     /*
      * The model is the central component of the pattern.
-     * It expresses the applications behaviour in terms of the problem domain.
+     * It expresses the applications' behaviour in terms of the problem domain.
      * Independent of the user interface.
      * It directly manages the data, logic and rules of the application.
      */

@@ -16,4 +16,13 @@
 
 DASHBOARD... LOGGED IN ONLY!!!!!!
 
+<form action="<?php echo URL;?>dashboard/xhrInsert" metho="POST">
+
+     <input type="text" name="text" />
+     <input type="submit" />
+
+</form>
+
+
+
 

@@ -12,7 +12,6 @@
      *
      * All rights reserved on behalf of J.Klaassen.
      */
-
     class Dashboard extends Controller
     {
         // User (ONLY) sees this page after successful login
@@ -32,8 +31,9 @@
                 exit;
             }
 
+            # todo: make path usage dynamic and efficient.
             # set js variable to ($)this view
-            $this->view->js = array();
+            $this->view->js = array('dashboard/js/default.js');
         }
 
         public function index()
@@ -46,6 +46,12 @@
             Session::destroy();
             header('location: ../login');
             exit;
+        }
+
+        # XML HTTP REQUEST, XHR
+        public function xhrInsert()
+        {
+            
         }
 
 

@@ -14,12 +14,14 @@
     <script type="text/javascript" src="<?php echo URL; ?>public/js/hfr.js"></script>
 
     <?php
-        # Remember: I'm currently in the header, which belongs to (all) the view(s) of the controller. So $this refers to the instantiated 'view'-object.
+        # Remember: Program is currently in the header, which belongs to (all) the view(s) of the controller. So $this refers to the instantiated 'view'-object.
 
         # Loop through .js files that need to be included by the controller of this view.
-
         if (isset($this->js)) {
-            echo "js is set for this [view] of [controller] of [model]....";
+            # echo "js is set for this [view] of [controller] of [model]....";
+            foreach ($this->js as $js) {
+                echo '<script type="text/javascript" src="' . URL . 'views/' . $js . '"></script>';
+            }
         }
 
     ?>
