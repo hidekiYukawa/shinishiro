@@ -15,7 +15,7 @@
 
     
     /*
-     * The controller, accepts input and converts it (in) to commands for the model or view.
+     * The controller, accepts input and converts it (in)to commands for the model or view.
      * A controller can send commands to the model to update the models state (ergo, editing a document).
      * It can also send commands to its associated view to change the views' presentation of the model (e.g., scrolling through a document, Movement of document).
      */
