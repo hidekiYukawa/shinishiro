@@ -1,44 +1,29 @@
-<!doctype html>
-<html>
-<head>
-    <title>Test</title>
-    <link rel="stylesheet" href="<?php echo URL; ?>public/css/default.css" />
-    <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.js"></script>
-    <script type="text/javascript" src="<?php echo URL; ?>public/js/custom.js"></script>
+<h1>User</h1>
+
+<form method="post" action="<?php echo URL;?>user/create">
+    <label>Login</label><input type="text" name="login" /><br />
+    <label>Password</label><input type="text" name="password" /><br />
+    <label>Role</label>
+    <select name="role">
+        <option value="default">Default</option>
+        <option value="admin">Admin</option>
+    </select><br />
+    <label>&nbsp;</label><input type="submit" />
+</form>
+
+<hr />
+
+<table>
     <?php
-        if (isset($this->js))
-        {
-            foreach ($this->js as $js)
-            {
-                echo '<script type="text/javascript" src="'.URL.'views/'.$js.'"></script>';
-            }
+        foreach($this->userList as $key => $value) {
+            echo '<tr>';
+            echo '<td>' . $value['id'] . '</td>';
+            echo '<td>' . $value['login'] . '</td>';
+            echo '<td>' . $value['role'] . '</td>';
+            echo '<td>
+				<a href="'.URL.'user/edit/'.$value['id'].'">Edit</a> 
+				<a href="'.URL.'user/delete/'.$value['id'].'">Delete</a></td>';
+            echo '</tr>';
         }
     ?>
-</head>
-<body>
-
-<?php Session::init(); ?>
-
-<div id="header">
-
-    <?php if (Session::get('loggedIn') == false):?>
-        <a href="<?php echo URL; ?>index">Index</a>
-        <a href="<?php echo URL; ?>help">Help</a>
-    <?php endif; ?>
-    
-    <?php if (Session::get('loggedIn') == true):?>
-        <a href="<?php echo URL; ?>dashboard">Dashboard</a>
-
-        <?php if (Session::get('role') == 'owner'):?>
-            <a href="<?php echo URL; ?>user">Users</a>
-        <?php endif; ?>
-
-        <a href="<?php echo URL; ?>dashboard/logout">Logout</a>
-    <?php else: ?>
-        <a href="<?php echo URL; ?>login">Login</a>
-    <?php endif; ?>
-</div>
-
-<div id="content">
-	
-	
+</table>

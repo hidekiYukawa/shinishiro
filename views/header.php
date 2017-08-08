@@ -45,17 +45,19 @@
         $dashboard  = '<a href="' . URL . 'dashboard">Dashboard</a> ';
         $user       = '<a href="' . URL . 'user">Users</a> ';
 
-        echo ( !Session::get( 'loggedIn' ) ) ? $index . $help . $login : $index;
+        
+        // todo: implement Session::init in global place etc.
 
+        // todo: think about which coding style to implement here.
+        
+        echo ( !Session::get( 'loggedIn' ) ) ? $index . $help . $login : $index;
+        
         echo ( Session::get( 'loggedIn') && Session::get('role') == 'owner' ) ? $user . $dashboard . $logout :
              ( Session::get( 'loggedIn' ) ) ? $dashboard . $logout : '';
 
 
 
 
-        // todo: implement Session::init in global place etc.
-
-        // todo: think about which coding style to implement here.
         // This could be done in various ways, I personally prefer this way, mainly because of minimal code duplicates. However, for readability reasons and so on, it's probably better to do it one of the other ways:
         // $out =  '<a href="' . URL;
         // $out .= (Session::get('loggedIn')) ? 'dashboard/logout">Logout' : 'login">Login';
