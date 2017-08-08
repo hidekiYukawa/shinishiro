@@ -35,8 +35,8 @@
         public function run()
         {// straight up PDO
 
-            // TODO: IMPLEMENT SPACE ENGINEERING LEVEL SECURITY!!!!!
-            
+            // TODO: IMPLEMENT SPACE ENGINEERING LEVEL SECURITY!!!!! DO NOT USE MD5!
+
             $sth = $this->db->prepare("SELECT id FROM users WHERE login = :login AND password = MD5(:password)");
 
             $sth->execute(array(':login' => $_POST[ 'login' ], ':password' => $_POST[ 'password' ]));

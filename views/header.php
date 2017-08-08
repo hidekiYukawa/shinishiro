@@ -29,24 +29,38 @@
 
 <body>
 
+<?php Session::init(); ?>
+
 <div id="header">
 
     <b>Nederlandsche Financiële Reserve</b>
     <br/><br/>
 
-    <a href="<?php echo URL; ?>index">Index</a>
-    <a href="<?php echo URL; ?>help">Help</a>
-
     <?php
+        # todo: make this dynamic, independent and so on....
+        $index      = '<a href="' . URL . 'index">Index</a> ';
+        $help       = '<a href="' . URL . 'help">Help</a> ';
+        $logout     = '<a href="' . URL . 'dashboard/logout">Logout</a> ';
+        $login      = '<a href="' . URL . 'login">Login</a> ';
+        $dashboard  = '<a href="' . URL . 'dashboard">Dashboard</a> ';
+        $user       = '<a href="' . URL . 'user">Users</a> ';
+
+        echo ( !Session::get( 'loggedIn' ) ) ? $index . $help . $login : $index;
+
+        echo ( Session::get( 'loggedIn') && Session::get('role') == 'owner' ) ? $user . $dashboard . $logout :
+             ( Session::get( 'loggedIn' ) ) ? $dashboard . $logout : '';
+
+
+
+
         // todo: implement Session::init in global place etc.
-        Session::init();
 
         // todo: think about which coding style to implement here.
         // This could be done in various ways, I personally prefer this way, mainly because of minimal code duplicates. However, for readability reasons and so on, it's probably better to do it one of the other ways:
-        $out =  '<a href="' . URL;
-        $out .= (Session::get('loggedIn')) ? 'dashboard/logout">Logout' : 'login">Login';
-        $out .= '</a>';
-        echo $out;
+        // $out =  '<a href="' . URL;
+        // $out .= (Session::get('loggedIn')) ? 'dashboard/logout">Logout' : 'login">Login';
+        // $out .= '</a>';
+        // echo $out;
     ?>
 
 </div>

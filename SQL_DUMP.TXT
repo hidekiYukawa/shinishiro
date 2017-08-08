@@ -1,0 +1,100 @@
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `mvc`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data`
+--
+
+CREATE TABLE IF NOT EXISTS `data` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `text` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+
+--
+-- Dumping data for table `data`
+--
+
+INSERT INTO `data` (`id`, `text`) VALUES
+(21, 'test'),
+(22, 'test2'),
+(23, 'test3'),
+(24, 'test4'),
+(25, 'test5');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(25) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `role` enum('default','admin','owner') NOT NULL DEFAULT 'default',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `users`
+--
+USE HFR_PRELIMINARY;
+
+CREATE DATABASE IF NOT EXISTS HFR_PRELIMINARY;
+
+CREATE TABLE IF NOT EXISTS users (
+
+  id            INT(11)       NOT NULL AUTO_INCREMENT,
+  login		      VARCHAR(254) 	NOT NULL,
+  password		  VARCHAR(32)		NOT NULL,
+
+  CONSTRAINT PRIMARY KEY (id),
+  CONSTRAINT UNIQUE (login)
+);
+
+CREATE TABLE IF NOT EXISTS data (
+  id    INT(11)       NOT NULL AUTO_INCREMENT,
+  data  VARCHAR(255)  NOT NULL,
+
+  CONSTRAINT PRIMARY KEY (id)
+);
+
+INSERT INTO users (login, password, role)
+    VALUES ('info@jklaassen.com', '9dc1f1f679bbff2d564b3a3b7a0703ee', 'owner');
+
+# INSERT INTO USER VALUES ('JEJ', 'KLAASSEN', 'info@jklaassen.com', 'ANNihilation666');
+
+SELECT * FROM users;
+
+DROP TABLE users;
+
+SELECT * FROM data;
+
+
+ALTER TABLE data ADD COLUMN (
+  timestamp   TIMESTAMP NULL
+);
+
+ALTER TABLE
+DELETE FROM data WHERE id = 3;
+
+CREATE TABLE IF NOT EXISTS users (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(25) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `role` enum('default','admin','owner') NOT NULL DEFAULT 'default',
+  PRIMARY KEY (`id`)
+)
