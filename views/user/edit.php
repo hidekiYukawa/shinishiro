@@ -1,18 +1,17 @@
+<h1>User: Edit</h1>
+
 <?php
-    /**
-     * Created
-     * With PhpStorm;
-     * By User: shinishirotomonaga;
-     * On Date: 09/08/2017;
-     * At Time: 01:46;
-     *
-     * Project name:    Nederlandsche Financiële Reserve
-     * File name:       ${FILENAME}
-     *
-     * All rights reserved on behalf of J.Klaassen.
-     */
-
-
+    print_r($this->user);
 ?>
 
-The edit page!!
+<form method="post" action="<?php echo URL;?>user/editSave/<?php echo $this->user['id']; ?>">
+    <label>Login</label><input type="text" name="login" value="<?php echo $this->user['login']; ?>" /><br />
+    <label>Password</label><input type="text" name="password" /><br />
+    <label>Role</label>
+    <select name="role">
+        <option value="default" <?php if($this->user['role'] == 'default') echo 'selected'; ?>>Default</option>
+        <option value="admin" <?php if($this->user['role'] == 'admin') echo 'selected'; ?>>Admin</option>
+        <option value="owner" <?php if($this->user['role'] == 'owner') echo 'selected'; ?>>Owner</option>
+    </select><br />
+    <label>&nbsp;</label><input type="submit" />
+</form>
