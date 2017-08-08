@@ -24,7 +24,7 @@
         {
             # todo: add high level security!!
             $text = $_POST[ 'text' ];
-            // $dt = new DateTimeImmutable();
+            
             $ts = $this->getCurrentDate('moment');
 
 
@@ -51,9 +51,14 @@
         function xhrDeleteListing()
         {
             $id = $_POST['id'];
-            $sth = $this->db->prepare('DELETE FROM data WHERE id = "'.$id.'"');
+            // var_dump($id);
+            $sth = $this->db->prepare("DELETE FROM data WHERE id = '$id'");
             $sth->execute();
+
+            echo json_encode($id);
         }
+        
+        
 
 
         // todo: place this function (static) in better suiting general purpose class.

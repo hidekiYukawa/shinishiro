@@ -1,6 +1,6 @@
 Dashboard... Logged in only..
 
-<br />
+<br /><br/>
 
 <form id="randomInsert" action="<?php echo URL;?>dashboard/xhrInsert/" method="post">
     <input type="text" name="text" />

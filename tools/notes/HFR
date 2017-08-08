@@ -1,0 +1,26 @@
+HFR
+
+	- Model View Controller (MVC)
+
+	'is a software architectural pattern for implementing user interfaces on computer. It divides a given application into three interconnected parts in order to separate internal representations of information from the ways that information is presented to and accepted from the user. The MVC design decouples these major components allowing for efficient code reuse and parallel development.'
+
+
+	DESCRIPTION
+		'As with other software architetures, MVC expresses the "core of the solution" to a problem while allowing it to be adapted for each system. Particular MVC architectures can vary significantly from the traditional description.'
+
+	COMPONENTS
+		'The model is the central component of the pattern. It expresses the applications behaviour in terms of the problem domain. Independent of the user interface. It directly manages the data, logic and rules of the application.'
+		
+		'A view can be any output representation of information, such as a chart or a diagram. Multiple views of the same information are possible, such as a bar chart for management and a tabular view for accountants.'
+
+		'The controller, accepts input and converts it to commands for the model or view.'
+
+
+	INTERACTIONS
+		'A model stores data that is retrieved according to commands from the controller and diplayed in the view.'
+
+		'A view generates new output to the user vased on changes in the model.'
+
+		'A controller can send commands to the model to update the models state (ergo, editing a document). It can also send commands to its associated view to change the views' presentation of the model (e.g., scrolling through a document, Movement of document).'
+
+		

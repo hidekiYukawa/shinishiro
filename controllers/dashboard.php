@@ -56,5 +56,9 @@
             $this->model->xhrGetListings();
         }
 
+        function xhrDeleteListing() {
+            $this->model->xhrDeleteListing();
+        }
+
 
     }

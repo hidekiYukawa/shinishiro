@@ -31,7 +31,7 @@
 
 <div id="header">
 
-    Header
+    <b>Nederlandsche Financiële Reserve</b>
     <br/><br/>
 
     <a href="<?php echo URL; ?>index">Index</a>
