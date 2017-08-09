@@ -12,7 +12,6 @@
      * All rights reserved on behalf of J.Klaassen.
      */
 
-    <?php
 
 class User extends Controller {
 

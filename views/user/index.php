@@ -27,6 +27,7 @@
                     <a href="' . URL . 'user/delete/' . $value['id'] . '">Delete</a>
                   </td>';
             echo '</tr>';
+            
         }
     ?>
 </table>

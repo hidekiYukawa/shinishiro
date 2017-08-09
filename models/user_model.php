@@ -12,6 +12,8 @@
      *
      * All rights reserved on behalf of J.Klaassen.
      */
+
+    
     class User_Model extends Model
     {
 
@@ -30,7 +32,7 @@
         {
             $stmt = $this->db->prepare('SELECT id, login role FROM users WHERE id = :id');
             $stmt->execute(array(':id' => $id));
-            return stmt->fetch();
+            return $stmt->fetch();
         }
         
         public function create($data)
