@@ -1,101 +1,171 @@
 <?php
 
-    /**
-     * Created
-     * With PhpStorm;
-     * By User: shinishirotomonaga;
-     * On Date: 04/08/2017;
-     * At Time: 19:19;
-     *
-     * Project name:    Nederlandsche Financiële Reserve
-     * File name:       ${FILENAME}
-     *
-     * All rights reserved on behalf of J.Klaassen.
-     */
-    
-    // initiating Model View Controller (MVC) ARCHITECTURE
-    class Bootstrap
-    {
-        public function __construct()
+    class Bootstrap {
+
+        private $_url = null;
+        private $_controller = null;
+
+        private $_controllerPath = 'controllers/'; // Always include trailing slash
+        private $_modelPath = 'models/'; // Always include trailing slash
+        private $_errorFile = 'error.php';
+        private $_defaultFile = 'index.php';
+
+        /**
+         * Starts the Bootstrap
+         *
+         * @return boolean
+         */
+        public function init()
         {
-            # todo: 'beautify' this code and make it more efficient. MORE LESS!
-            // check if $_GET['url'] is set, else, set $url to NULL
-            $url = (isset($_GET[ 'url' ])) ? $_GET[ 'url' ] : null;
+            // Sets the protected $_url
+            $this->_getUrl();
 
-            // trim the right forward slash of url
+            // Load the default controller if no URL is set
+            // eg: Visit http://localhost it loads Default Controller
+            if (empty($this->_url[0])) {
+                $this->_loadDefaultController();
+                return false;
+            }
+
+            $this->_loadExistingController();
+            $this->_callControllerMethod();
+        }
+
+        /**
+         * (Optional) Set a custom path to controllers
+         * @param string $path
+         */
+        public function setControllerPath($path)
+        {
+            $this->_controllerPath = trim($path, '/') . '/';
+        }
+
+        /**
+         * (Optional) Set a custom path to models
+         * @param string $path
+         */
+        public function setModelPath($path)
+        {
+            $this->_modelPath = trim($path, '/') . '/';
+        }
+
+        /**
+         * (Optional) Set a custom path to the error file
+         * @param string $path Use the file name of your controller, eg: error.php
+         */
+        public function setErrorFile($path)
+        {
+            $this->_errorFile = trim($path, '/');
+        }
+
+        /**
+         * (Optional) Set a custom path to the error file
+         * @param string $path Use the file name of your controller, eg: index.php
+         */
+        public function setDefaultFile($path)
+        {
+            $this->_defaultFile = trim($path, '/');
+        }
+
+        /**
+         * Fetches the $_GET from 'url'
+         */
+        private function _getUrl()
+        {
+            $url = isset($_GET['url']) ? $_GET['url'] : null;
             $url = rtrim($url, '/');
+            $url = filter_var($url, FILTER_SANITIZE_URL);
+            $this->_url = explode('/', $url);
+        }
 
-            // explode into array, delimiter = '/'
-            $url = explode('/', $url);
+        /**
+         * This loads if there is no GET parameter passed
+         */
+        private function _loadDefaultController()
+        {
+            require $this->_controllerPath . $this->_defaultFile;
+            $this->_controller = new Index();
+            $this->_controller->index();
+        }
 
-            // print_r($url);
-            
-            // if modified URL[0] (controlller) is an empty String OR carries the name 'index.php', require default index controller
-            if (empty($url[ 0 ])) {
-                require 'controllers/index.php';
+        /**
+         * Load an existing controller if there IS a GET parameter passed
+         *
+         * @return boolean|string
+         */
+        private function _loadExistingController()
+        {
+            $file = $this->_controllerPath . $this->_url[0] . '.php';
 
-                // instantiate new Index obj.
-                $controller = new Index();
-
-                // call index() function for page rendering
-                $controller->index();
-
-                // do not proceed (remaining part of) this script if THIS IF condition is met, ergo return false
-                return false;
-            }
-
-            // ** String not empty and not carrying the name 'index.php'
-
-            // set file according to requested controller ( $url[0] )
-            $file = 'controllers/' . $url[ 0 ] . '.php';
-
-            // check if the file exists, if so require it, else require and instantiate error and return false
             if (file_exists($file)) {
-                // var_dump($file);
-                require($file);
+                require $file;
+                $this->_controller = new $this->_url[0];
+                $this->_controller->loadModel($this->_url[0], $this->_modelPath);
             } else {
-                // var_dump($file);
-                $this->error();
+                $this->_error();
                 return false;
             }
+        }
 
-            // ** nothing returned false up until this line! Set controller to new instantiation of object with name of requested ($url([0])) controller 
-            $controller = new $url[ 0 ];
+        /**
+         * If a method is passed in the GET url paremter
+         *
+         *  http://localhost/controller/method/(param)/(param)/(param)
+         *  url[0] = Controller
+         *  url[1] = Method
+         *  url[2] = Param
+         *  url[3] = Param
+         *  url[4] = Param
+         */
+        private function _callControllerMethod()
+        {
+            $length = count($this->_url);
 
-            $controller->loadModel($url[ 0 ]);
-            
-            // IF arg is passed to method {$url[2]}
-            if (isset($url[ 2 ])) {
-
-                if (method_exists($controller, $url[ 1 ])) {
-                    $controller->{$url[ 1 ]}($url[ 2 ]);
-                } else {
-                    $this->error();
+            // Make sure the method we are calling exists
+            if ($length > 1) {
+                if (!method_exists($this->_controller, $this->_url[1])) {
+                    $this->_error();
                 }
-            } else {
-                // check if method is requested in this query ( $url[ 1 ] )
-                if (isset($url[ 1 ])) {
+            }
 
-                    if (method_exists($controller, $url[ 1 ])) {
-                        // load the requested method without argument(s) - default = false
-                        $controller->{$url[ 1 ]}();
-                    } else {
-                        $this->error();
-                    }
-                } else {
-                    // load the requested controller without method or args
-                    $controller->index();
-                }
+            // Determine what to load
+            switch ($length) {
+                case 5:
+                    //Controller->Method(Param1, Param2, Param3)
+                    $this->_controller->{$this->_url[1]}($this->_url[2], $this->_url[3], $this->_url[4]);
+                    break;
+
+                case 4:
+                    //Controller->Method(Param1, Param2)
+                    $this->_controller->{$this->_url[1]}($this->_url[2], $this->_url[3]);
+                    break;
+
+                case 3:
+                    //Controller->Method(Param1, Param2)
+                    $this->_controller->{$this->_url[1]}($this->_url[2]);
+                    break;
+
+                case 2:
+                    //Controller->Method(Param1, Param2)
+                    $this->_controller->{$this->_url[1]}();
+                    break;
+
+                default:
+                    $this->_controller->index();
+                    break;
             }
         }
 
-        public function error() {
-            require 'controllers/error.php';
-
-            $controller = new Errror();
-            $controller->index();
-
-            // do not proceed (remaining part of) this script if THIS IF condition is met, ergo return false
-            return false;
+        /**
+         * Display an error page if nothing exists
+         *
+         * @return boolean
+         */
+        private function _error() {
+            require $this->_controllerPath . $this->_errorFile;
+            $this->_controller = new Errror();
+            $this->_controller->index();
+            exit;
         }
+
     }

@@ -13,22 +13,18 @@
      */
 
 
-    // todo: use an autoloader! (SPL Autoload or something...)
+    // @todo: use an autoloader! (SPL Autoload or something...)
     
-    // todo: use global (config miscellaneous) path vars, in case of redundant usage.
-    
-    require 'libs/Bootstrap.php';
-    require 'libs/Controller.php';
-    require 'libs/Model.php';
-    require 'libs/View.php';
+    // @todo:DONE? use global (config miscellaneous) path vars, in case of redundant usage. DONE?
 
-    // Library
-    require 'libs/' . 'Database.php';
-    require 'libs/' . 'Session.php';
+    require 'config.php';
+    require 'util/Auth.php';
 
-    require 'config/paths.php';
-    require 'config/database.php';
+    function __autoload($class) {
+        require LIBS . $class . '.php';
+    }
     
+    # instantiate application object of class Bootstrap
     $app = new Bootstrap();
 ?> 
 
