@@ -37,7 +37,7 @@
 
             // TODO: IMPLEMENT SPACE ENGINEERING LEVEL SECURITY!!!!! DO NOT USE MD5!
 
-            $sth = $this->db->prepare("SELECT id FROM users WHERE login = :login AND password = MD5(:password)");
+            $sth = $this->db->prepare("SELECT id, role FROM users WHERE login = :login AND password = MD5(:password)");
 
             $sth->execute(array(':login' => $_POST[ 'login' ], ':password' => $_POST[ 'password' ]));
 
@@ -47,10 +47,12 @@
 
             if ($count > 0) { // a record is returned
                 Session::init();
-                
+
+                // var_dump($data);
                 Session::set('role', $data['role']);
                 Session::set('loggedIn', true);
 
+                // echo $data['role'];
                 header('location: ../dashboard');
             } else {
                 // show an error!

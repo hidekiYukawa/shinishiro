@@ -52,8 +52,8 @@
         
         echo ( !Session::get( 'loggedIn' ) ) ? $index . $help . $login : $index;
         
-        echo ( Session::get( 'loggedIn') && Session::get('role') == 'owner' ) ? $user . $dashboard . $logout :
-             ( Session::get( 'loggedIn' ) ) ? $dashboard . $logout : '';
+        echo ( Session::get('role') == 'owner' ) ? $user : '';
+        echo ( Session::get( 'loggedIn' ) ) ? $dashboard . $logout : '';
 
 
 
