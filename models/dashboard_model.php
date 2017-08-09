@@ -55,7 +55,7 @@
             $sth = $this->db->prepare("DELETE FROM data WHERE id = '$id'");
             $sth->execute();
             
-            echo json_encode($id)
+            echo json_encode($id);
         }
         
         
