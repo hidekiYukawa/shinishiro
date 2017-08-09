@@ -41,12 +41,14 @@
 
             $sth->execute(array(':login' => $_POST[ 'login' ], ':password' => $_POST[ 'password' ]));
 
-            // $data = $sth->fetchAll();
-
+            $data = $sth->fetch();
+            
             $count = $sth->rowCount();
 
             if ($count > 0) { // a record is returned
                 Session::init();
+                
+                Session::set('role', $data['role']);
                 Session::set('loggedIn', true);
 
                 header('location: ../dashboard');
