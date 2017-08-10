@@ -25,6 +25,8 @@
     }
     
     # instantiate application object of class Bootstrap
-    $app = new Bootstrap();
+    $bootstrap = new Bootstrap();
+
+    $bootstrap->init();
 ?> 
 

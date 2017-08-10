@@ -22,3 +22,7 @@ JS variable (object of class)
 
 JSON
 
+
+PHP:
+
+    ternary operator, 'slim' usage etc.
