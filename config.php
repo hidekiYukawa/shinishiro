@@ -1,43 +1,47 @@
 <?php
-    /**
-     * Created
-     * With PhpStorm;
-     * By User: shinishirotomonaga;
-     * On Date: 10/08/2017;
-     * At Time: 00:47;
-     *
-     * Project name:    Nederlandsche Financiële Reserve
-     * File name:       ${FILENAME}
-     *
-     * All rights reserved on behalf of J.Klaassen.
-     */
+/**
+ * Created
+ * With PhpStorm;
+ * By User: shinishirotomonaga;
+ * On Date: 10/08/2017;
+ * At Time: 00:47;
+ *
+ * Project name:    Nederlandsche Financiële Reserve
+ * File name:       ${FILENAME}
+ *
+ * All rights reserved on behalf of J.Klaassen.
+ */
 
-    // Always provide a TRAILING SLASH (/) AFTER A PATH
+// Always provide a TRAILING SLASH (/) AFTER A PATH
 
-    // TODO: automatically detect workspace / server/host
-    
-    define('URL', 'http://localhost/HFR/');
+// TODO: automatically detect workspace / server/host
 
-    define('VIEWS', 'views/');
+# @Todo: create dynamic CONSTANTS ETC.
 
-    define('MODELS', 'models/');
+define('PROJECT_NAME', 'Nederlansche Financiële Reserve');
 
-    define('LIBS', 'libs/');
+define('URL', 'http://localhost/HFR/');
 
-    define('CONTROLLERS', 'controllers/');
+define('VIEWS', 'views/');
 
-    define('HEADER', 'header.php');
-    define('FOOTER', 'footer.php');
+define('MODELS', 'models/');
 
-    define('DB_TYPE', 'mysql');
-    define('DB_HOST', 'localhost');
-    define('DB_NAME', 'HFR_PRELIMINARY');
-    define('DB_USER', 'root');
-    define('DB_PASS', '');
+define('LIBS', 'libs/');
 
-    // The sitewide hashkey, do not change this because its used for passwords!
-    // This is for other hash keys... Not sure yet
-    define('HASH_GENERAL_KEY', 'MixitUp200');
+define('CONTROLLERS', 'controllers/');
 
-    // This is for database passwords only
-    define('HASH_PASSWORD_KEY', "7876lksjf898|3948;kljadl;f|KJKL;DSJFOIEKM9[]'-");
+define('HEADER', 'header.php');
+define('FOOTER', 'footer.php');
+
+define('DB_TYPE', 'mysql');
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'HFR_PRELIMINARY');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+
+// The sitewide hashkey, do not change this because its used for passwords!
+// This is for other hash keys... Not sure yet
+define('HASH_GENERAL_KEY', 'MixitUp200');
+
+// This is for database passwords only
+define('HASH_PASSWORD_KEY', "7876lksjf898|3948;kljadl;f|KJKL;DSJFOIEKM9[]'-");

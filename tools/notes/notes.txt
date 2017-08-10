@@ -26,3 +26,7 @@ JSON
 PHP:
 
     ternary operator, 'slim' usage etc.
+
+
+
+    - placing variables and using access modifiers etc.
