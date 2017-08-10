@@ -24,22 +24,16 @@
 
 class Help extends Controller {
 
-    public function __construct() {
+    function __construct() {
         parent::__construct();
-        // echo "<br/>We are inside help.<br/>";
     }
 
+    function index() {
+        $this->view->title = 'Help';
 
-    public function index() {
+        $this->view->render('header');
         $this->view->render('help/index');
+        $this->view->render('footer');
     }
 
-    public function other($arg = false) {
-        // echo "Optional: " . $arg;
-
-        require 'models/help_model.php';
-        $model = new Help_Model();
-        //
-        $this->view->blah = $model->blah();
-    }
 }
