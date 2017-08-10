@@ -22,11 +22,11 @@ class Login extends Controller {
     public function index() {
         // todo: automize this
 
-        // require MODELS . 'login_model.php';
-        //
-        // $model = new Login_Model();
+        $this->view->title = 'Login';
 
+        $this->view->render('header');
         $this->view->render('login/index');
+        $this->view->render('footer');
     }
 
 

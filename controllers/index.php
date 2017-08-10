@@ -12,20 +12,17 @@
      * All rights reserved on behalf of J.Klaassen.
      */
 
+class Index extends Controller {
 
-class Index extends Controller
-{
-    public function __construct()
-    {
+    function __construct() {
         parent::__construct();
     }
 
     function index() {
-        // echo 'INDEX INDEX INDEX';
+        //echo Hash::create('sha256', 'jesse', HASH_PASSWORD_KEY);
+        //echo Hash::create('sha256', 'test2', HASH_PASSWORD_KEY);
+        $this->view->title = 'Home';
         $this->view->render('index/index');
     }
 
-    function details() {
-        $this->view->render('index/index');
-    }
 }
