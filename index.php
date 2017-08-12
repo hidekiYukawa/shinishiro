@@ -20,6 +20,7 @@
     require 'config.php';
     require 'util/Auth.php';
 
+    # autoload classes
     function __autoload($class) {
         @require LIBS . $class . '.php';
     }

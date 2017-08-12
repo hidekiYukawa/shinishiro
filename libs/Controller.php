@@ -7,6 +7,8 @@ class Controller {
 		$this->view = new View();
 	}
 	
+    
+    // this function is called from Bootstrap.php
 	public function loadModel($name) {
 		
 		$path = 'models/'.$name.'_model.php';

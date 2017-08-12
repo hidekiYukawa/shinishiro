@@ -28,6 +28,7 @@ class Bootstrap {
 		
 		$controller->loadModel($url[0]);
 
+
 		// calling methods
 		if (isset($url[2])) {
 			if (method_exists($controller, $url[1])) {
@@ -46,8 +47,6 @@ class Bootstrap {
 				$controller->index();
 			}
 		}
-		
-		
 	}
 	
 	function error() {
