@@ -1,54 +1,60 @@
 <?php
 
-    /**
-     * Created
-     * With PhpStorm;
-     * By User: shinishirotomonaga;
-     * On Date: 09/08/2017;
-     * At Time: 02:09;
-     *
-     * Project name:    Nederlandsche Financiële Reserve
-     * File name:       ${FILENAME}
-     *
-     * All rights reserved on behalf of J.Klaassen.
-     */
-    
-    class User_Model extends Model
-    {
-        public function __construct()
-        {
-            parent::__construct();
-        }
+class User_Model extends Model
+{
+	public function __construct()
+	{
+		parent::__construct();
+	}
 
-        public function userList()
-        {
-            return $this->db->select('SELECT userid, login, role FROM user');
-        }
-
-        public function userSingleList($userid)
-        {
-            return $this->db->select('SELECT userid, login, role FROM user WHERE userid = :userid', array(':userid' => $userid));
-        }
-
-        public function create($data)
-        {
-            $this->db->insert('user', array('login' => $data[ 'login' ], 'password' => Hash::create('sha256', $data[ 'password' ], HASH_PASSWORD_KEY), 'role' => $data[ 'role' ]));
-        }
-
-        public function editSave($data)
-        {
-            $postData = array('login' => $data[ 'login' ], 'password' => Hash::create('sha256', $data[ 'password' ], HASH_PASSWORD_KEY), 'role' => $data[ 'role' ]);
-
-            $this->db->update('user', $postData, "`userid` = {$data['userid']}");
-        }
-
-        public function delete($userid)
-        {
-            $result = $this->db->select('SELECT role FROM user WHERE userid = :userid', array(':userid' => $userid));
-
-            if ($result[ 0 ][ 'role' ] == 'owner')
-                return false;
-
-            $this->db->delete('user', "userid = '$userid'");
-        }
-    }
+	public function userList()
+	{
+		$sth = $this->db->prepare('SELECT id, login, role FROM users');
+		$sth->execute();
+		return $sth->fetchAll();
+	}
+	
+	public function userSingleList($id)
+	{
+		$sth = $this->db->prepare('SELECT id, login, role FROM users WHERE id = :id');
+		$sth->execute(array(':id' => $id));
+		return $sth->fetch();
+	}
+	
+	public function create($data)
+	{
+		$sth = $this->db->prepare('INSERT INTO users 
+			(`login`, `password`, `role`) 
+			VALUES (:login, :password, :role)
+			');
+		
+		$sth->execute(array(
+			':login' => $data['login'],
+			':password' => $data['password'],
+			':role' => $data['role']
+		));
+	}
+	
+	public function editSave($data)
+	{
+		$sth = $this->db->prepare('UPDATE users
+			SET `login` = :login, `password` = :password, `role` = :role
+			WHERE id = :id
+			');
+		
+		$sth->execute(array(
+			':id' => $data['id'],
+			':login' => $data['login'],
+			':password' => md5($data['password']),
+			':role' => $data['role']
+		));
+	}
+	
+	public function delete($id)
+	{
+		$sth = $this->db->prepare('DELETE FROM users WHERE id = :id');
+		$sth->execute(array(
+			':id' => $id
+		));
+	}
+}

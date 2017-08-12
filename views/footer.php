@@ -1,10 +1,8 @@
-
 </div>
 
 <div id="footer">
-    (C) Footer
+	(C) Justin Klaassen - Nederlandsche Financiële Reserve 
 </div>
 
 </body>
-
 </html>

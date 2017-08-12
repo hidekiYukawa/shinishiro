@@ -21,12 +21,11 @@
     require 'util/Auth.php';
 
     function __autoload($class) {
-        require LIBS . $class . '.php';
+        @require LIBS . $class . '.php';
     }
     
     # instantiate application object of class Bootstrap
     $bootstrap = new Bootstrap();
 
-    $bootstrap->init();
+//    $bootstrap->init();
 ?> 
-

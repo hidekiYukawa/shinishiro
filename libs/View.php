@@ -1,33 +1,21 @@
 <?php
 
-    /**
-     * Created
-     * With PhpStorm;
-     * By User: shinishirotomonaga;
-     * On Date: 06/08/2017;
-     * At Time: 02:19;
-     *
-     * Project name:    Nederlandsche Financiële Reserve
-     * File name:       ${FILENAME}
-     *
-     * All rights reserved on behalf of J.Klaassen.
-     */
-    class View
-    {
-        public function __construct()
-        {
-            // echo 'This is the view.<br/>';
-        }
+class View {
 
-        public function render($name, $noInclude = false) {
+	function __construct() {
+		//echo 'this is the view';
+	}
 
-            /** IF $noInclude is set, don't include default header and footer */
-            if ($noInclude) {
-                require VIEWS . $name . '.php';
-            } else {
-                require VIEWS . HEADER;
-                require VIEWS . $name . '.php';
-                require VIEWS . FOOTER;
-            }
-        }
-    }
+	public function render($name, $noInclude = false)
+	{
+		if ($noInclude == true) {
+			require 'views/' . $name . '.php';	
+		}
+		else {
+			require 'views/header.php';
+			require 'views/' . $name . '.php';
+			require 'views/footer.php';	
+		}
+	}
+
+}
