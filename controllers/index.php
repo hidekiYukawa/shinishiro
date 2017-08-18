@@ -4,6 +4,9 @@ class Index extends Controller {
 
 	function __construct() {
 		parent::__construct();
+		$this->view->pageName = 'Index';
+        $this->view->pageScrollNav = array('registreren', 'other');
+        $this->view->js = array('index/js/register_form.js');
 	}
 	
 	function index() {

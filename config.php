@@ -20,7 +20,7 @@
 
 define('PROJECT_NAME', 'Nederlansche Financiële Reserve');
 
-define('URL', 'http://localhost/HFR/');
+define('URL', 'http://nfr.jklaassen.com/');
 
 define('VIEWS', 'views/');
 

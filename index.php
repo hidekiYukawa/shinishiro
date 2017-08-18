@@ -19,6 +19,7 @@
 
     require 'config.php';
     require 'util/Auth.php';
+    require 'util/Tools.php';
 
     # autoload classes
     function __autoload($class) {

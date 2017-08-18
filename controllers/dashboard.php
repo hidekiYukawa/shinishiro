@@ -17,6 +17,7 @@ class Dashboard extends Controller {
 		}
 	
 		$this->view->js = array('dashboard/js/default.js');
+		$this->view->pageName = 'Dashboard';
 		
 	}
 	

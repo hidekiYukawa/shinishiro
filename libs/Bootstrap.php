@@ -14,6 +14,7 @@ class Bootstrap {
 			require 'controllers/index.php';
 			$controller = new Index();
 			$controller->index();
+            $_SESSION['page'] = 'index';
 			return false;
 		}
 
@@ -25,6 +26,8 @@ class Bootstrap {
 		}
 		
 		$controller = new $url[0];
+		
+		$_SESSION['page'] = $url[0];
 		
 		$controller->loadModel($url[0]);
 
